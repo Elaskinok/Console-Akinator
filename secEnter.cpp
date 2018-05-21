@@ -4,7 +4,7 @@
 int securitedEnter(int left_barricade, int right_barricade) {
 	int flag;
 	int answer;
-	printf("Ответ: ");
+	printf("Answer: ");
 	do {
 		flag = scanf("%d", &answer);
 		rewind(stdin);

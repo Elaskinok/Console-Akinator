@@ -8,24 +8,22 @@
 #include "File.h"
 #include "secEnter.h"
 
-// !!!Как реализовать использование другого языка в меню ? с ООП и без!!!
-
 int main()
 {
 	system("chcp 1251 > nul");
 	FILE* file_pointer;
-	printf("Начать игру ?\n1 - Да\n0 - Нет\n");
+	printf("Start game ?\n1 - Yes\n0 - No\n");
 	if (securitedEnter(0, 1))	while (1) {
 		bool flagAdd = false;
 		system("CLS");
 		treeNode* root = nullptr;
 		char* fileName = (char*)calloc(buffSizeStr1024, sizeof(char));;
-		printf("Хотите ли вы использовать существующую базу данных или желаете создать новую ?\n");
-		printf("1 - Использовать существующую\n2 - Создать новую\n");
+		printf("Do you want use existing database or create new?\n");
+		printf("1 - Use existing\n2 - Create new\n");
 		if (securitedEnter(1, 2) == 1) {
 			fopen_s(&file_pointer, FILES_LIST, "r");
 			if (file_pointer) {
-				printf("Выберите одну из существующих тематик:\n");
+				printf("Choose database:\n");
 				int i = 1;
 				do {
 					char* tmp = (char*)calloc(buffSizeStr1024, sizeof(char));
@@ -47,7 +45,7 @@ int main()
 				fclose(file_pointer);
 			}
 			else {
-				printf("Баз данных не существует!!!\n");
+				printf("Databases don't exist!\n");
 				enterFileName(fileName);
 				flagAdd = true;
 			}
@@ -66,26 +64,26 @@ int main()
 		}
 		else {
 			char* tmp = (char*)malloc(sizeof(char)*buffSizeStr1024);
-			printf("База данных пуста! Придумайте первый объект.\nОбъект: ");
+			printf("Database is empty!You must think up 1st object.\nObject: ");
 			fscanf(stdin, "%[^\n]", tmp); rewind(stdin);
 			addNode(root, tmp, 0);
 			free(tmp);
 		}
 
-		printf("============================================================\n\nНачнём!!!");
+		printf("============================================================\n\nLet's go!!!");
 		printf("\n\n============================================================\n");
 
 		treeNode* tempNode = findObject(root);
 		if (!tempNode) {
-			printf("Какая удача!\n");
+			printf("What a luck!!!\n");
 		}
 		else {
 			char* tmp1 = (char*)malloc(buffSizeStr1024 * sizeof(char));
-			printf("А что это ?\n");
+			printf("What is it ?\n");
 			fscanf(stdin, "%[^\n]", tmp1); rewind(stdin);
 			char* tmp2 = (char*)malloc(buffSizeStr1024 * sizeof(char));
 
-			printf("А чем он отличается от %s ?\n", tempNode->data);
+			printf("What diferent between %s and %s ?\n", tmp1, tempNode->data);
 			fscanf(stdin, "%[^\n]", tmp2); rewind(stdin);
 			addAnswToTree(tempNode, tmp1, tmp2, right);
 
@@ -103,7 +101,7 @@ int main()
 
 		free(fileName);
 
-		printf("Хотите продолжить ?\n1 - Да\n0 - Нет\n");
+		printf("Do you want to continue ?\n1 - Yes\n0 - No\n");
 		if (!securitedEnter(0, 1)) break;
 	}
 	

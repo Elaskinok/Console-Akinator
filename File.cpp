@@ -12,15 +12,12 @@ void skipTrash(FILE*& fp) {
 		if (symb == ' ' || symb == '\n' || symb == '\0')
 			symb = fgetc(fp);
 	} while (symb == ' ' && symb == '\n' && symb == '\0');
-
-	//char buff[32];
-	//fscanf(fp, "%[	\n]", buff);
 	if (!feof(fp)) fseek(fp, -1, SEEK_CUR);
 }
 
 bool openFile(FILE*& fp, const char* file_name) {
 	if (fp == nullptr) {
-		printf("Файл \"%s\" невозможно открыть!\n", file_name);
+		printf("Can't open file \"%s\"!\n", file_name);
 		system("CLS");
 		return false;
 	}
