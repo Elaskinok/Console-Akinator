@@ -69,17 +69,14 @@ treeNode* findLeaf(char* way, treeNode* node) {
 }
 
 treeNode* findObject(treeNode* node/*root at 1st request*/) {
-	bool select;
 		if (node->leftLeaf && node->rightLeaf) {
 			printf("%s ?\n1 - Yes\n0 - No\n", node->data);
-			select = securitedEnter(0, 1);
-			if (select) return findObject(node->rightLeaf);
+			if (securitedEnter(0, 1)) return findObject(node->rightLeaf);
 			else return findObject(node->leftLeaf);
 		}
 		else {
 			printf("Is it %s ?\n1 - Yes\n0 - No\n", node->data);
-			select = securitedEnter(0, 1);
-			if (select) return nullptr;
+			if (securitedEnter(0, 1)) return nullptr;
 			else return node;
 		}
 }
