@@ -68,25 +68,6 @@ treeNode* findLeaf(char* way, treeNode* node) {
 	if (*way == '1') return findLeaf(way + 1, node->rightLeaf);
 }
 
-//treeNode* findObject(treeNode* root/*root at 1st request*/) {
-//	treeNode* temp = root;
-//	bool select;
-//
-//	do {
-//		if (temp->leftLeaf && temp->rightLeaf) {
-//			printf("%s ?\n1 - Да\n0 - Нет\n", temp->data);
-//			select = securitedEnter(0,1);
-//			if (select) temp = temp->rightLeaf;
-//			else temp = temp->leftLeaf;
-//		}
-//		else {
-//			printf("Это %s ?\n1 - Да\n0 - Нет\n", temp->data);
-//			select = securitedEnter(0,1);
-//			if (select) return nullptr;
-//			else return temp;
-//		}
-//	} while (temp);
-//}
 
 treeNode* findObject(treeNode* node/*root at 1st request*/) {
 	bool select;
